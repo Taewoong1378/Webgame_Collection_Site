@@ -37,10 +37,10 @@ const UnderButton = ({ setMessage, onReset, score }) => {
       <FormWrapper onFinish={onSubmitForm}>
         <div style={{ overflow: 'hidden' }}>
           <Button 
-          type="primary" 
+          type="danger" 
           htmlType="submit" 
           loading={addnicknameLoading} 
-          style={{ marginLeft: '15px', lineHeight: '1.8em' }}
+          style={{ width: '223px', lineHeight: '1.8em' }}
           >
           점수 제출
           </Button>

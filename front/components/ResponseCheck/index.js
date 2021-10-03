@@ -10,6 +10,7 @@ const ResponseCheck = () => {
   // eslint-disable-next-line react/jsx-key
   const [message, setMessage] = useState(['기회는 5번! 다음 화면에서 배경이 초록색이 되는 순간 클릭하세요.', <br />, <br />, '시작하려면 클릭해주세요.']);
   const [result, setResult] = useState([]);
+  const [fail, setFail] = useState(1);
 
   const timeout = useRef(null);
   const startTime = useRef();
@@ -29,13 +30,21 @@ const ResponseCheck = () => {
     } else if (state === 'ready') { // 성급하게 클릭
       clearTimeout(timeout.current);
       setState('waiting');
-      setMessage('너무 성급하시네요 ㅡ.ㅡ 초록색이 된 후에 클릭하세요!');
+      setFail(fail + 1);
+      setMessage(['너무 성급하시네요 ㅡ.ㅡ 초록색이 된 후에 클릭하세요!', <br />, `현재 ${fail}번 실수하셨습니다. 3번 실수하면 점수가 리셋됩니다.`]);
+      if (fail === 3) {
+        setResult([]);
+        setFail(1);
+        setState('waiting');
+        setMessage('3번 실수했기 때문에 점수가 리셋됐습니다. 화면을 눌러서 다시 시작하세요.');
+        dispatch(resetRequestAction());
+      }
     } else if (state === 'now') { // 반응속도 체크
         if (result.length !== 4) {
           endTime.current = new Date();
           setState('waiting');
           // eslint-disable-next-line react/jsx-key
-          setMessage(['기회는 5번! 다음 화면에서 배경이 초록색이 되는 순간 클릭하세요.', <br/>, <br/>, '시작하려면 클릭해주세요.']);
+          setMessage(['기회는 5번! 다음 화면에서 배경이 초록색이 되는 순간 클릭하세요.', <br />, <br />, '시작하려면 클릭해주세요.']);
           setResult((prevResult) => [...prevResult, endTime.current - startTime.current]);
       } else {
         endTime.current = new Date();
@@ -51,7 +60,7 @@ const ResponseCheck = () => {
     setResult([]);
     setState('waiting');
     // eslint-disable-next-line react/jsx-key
-    setMessage(['기회는 5번! 다음 화면에서 배경이 초록색이 되는 순간 클릭하세요.', <br/>, <br/>, '시작하려면 클릭해주세요.']);
+    setMessage(['기회는 5번! 다음 화면에서 배경이 초록색이 되는 순간 클릭하세요.', <br />, <br />, '시작하려면 클릭해주세요.']);
     dispatch(resetRequestAction());
   }, []);
 
@@ -84,7 +93,7 @@ const ResponseCheck = () => {
         </FirstUl>
         <Div>
           <ButtonWrapper type="primary" onClick={onReset}>다시!</ButtonWrapper>
-            <Link href="/record">
+            <Link href="/responseCheckScore">
             <a><ButtonWrapper type="primary">다른 사람 점수 보러가기</ButtonWrapper></a>
             </Link>
         </Div>
