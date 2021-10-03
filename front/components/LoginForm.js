@@ -41,7 +41,7 @@ const LoginForm = () => {
   const [password, onChangePassword] = useInput('');
   const [code, setCode] = useState('');
 
-  const style = useMemo(() => ({ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', padding: '10px' }));
+  const style = useMemo(() => ({ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', padding: '20px', marginTop: '-50px' }));
 
   useEffect(() => {
     setCode(new URL(window.location.href).searchParams.get('code'));
@@ -72,7 +72,7 @@ const LoginForm = () => {
         <div style={style}>
           <FormWrapper onFinish={onSubmitForm}>
             <Email>
-              <label style={{ color: 'white' }} htmlFor="user-email">이메일</label>
+              <label htmlFor="user-email">이메일</label>
               <br />
               <Input
               name="user-email"
@@ -83,7 +83,7 @@ const LoginForm = () => {
               />
             </Email>
             <Password>
-              <label style={{ color: 'white' }} htmlFor="user-password">비밀번호</label>
+              <label htmlFor="user-password">비밀번호</label>
               <br />
               <Input
               name="user-password"
@@ -95,7 +95,7 @@ const LoginForm = () => {
             </Password>
             <ButtonWrapper>
               <Button type="primary" htmlType="submit" loading={logInLoading}>로그인</Button>
-              <Link href="/register"><a><Button>회원가입</Button></a></Link>
+              <Link href="/signup"><a><Button>회원가입</Button></a></Link>
             </ButtonWrapper>
           </FormWrapper>
         </div>
