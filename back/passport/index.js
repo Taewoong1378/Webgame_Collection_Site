@@ -1,7 +1,5 @@
 const passport = require('passport');
 const local = require('./localStrategy');
-const kakao = require('./kakaoStrategy');
-const naver = require('./naverStrategy');
 const User = require('../models/user');
 
 module.exports = () => {
@@ -11,7 +9,7 @@ module.exports = () => {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await User.findOne({ where: { id }});
+      const user = await User.findOne({ where: { id } });
       done(null, user);
     } catch (error) {
       console.error(error);
@@ -20,6 +18,4 @@ module.exports = () => {
   });
 
   local();
-  kakao();
-  naver();
 };
