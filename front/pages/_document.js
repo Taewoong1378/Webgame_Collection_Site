@@ -35,7 +35,7 @@ export default class MyDocument extends Document {
         return (
             <Html style={{ height: '100%' }}>
                 <Head />
-                <body style={{ backgroundColor: '#717171', margin: 0, height: '100%' }}>
+                <body>
                     {/* IE에서도 최신 문법이 적용되게끔하기위해 써주는 script */}
                     <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019" />
                     <Main />
