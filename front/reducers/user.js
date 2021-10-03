@@ -8,6 +8,9 @@ export const initialState = {
   logOutLoading: false, // 로그아웃 시도중
   logOutDone: false,
   logOutError: null,
+  addScoreLoading: false,
+  addScoreDone: false,
+  addScoreError: null,
   signUpLoading: false, // 회원가입 시도중
   signUpDone: false,
   signUpError: null,
@@ -29,6 +32,14 @@ export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
 
+export const RESET_REQUEST = 'RESET_REQUEST';
+export const RESET_SUCCESS = 'RESET_SUCCESS';
+export const RESET_FAILURE = 'RESET_FAILURE';
+
+export const ADD_SCORE_REQUEST = 'ADD_SCORE_REQUEST';
+export const ADD_SCORE_SUCCESS = 'ADD_SCORE_SUCCESS';
+export const ADD_SCORE_FAILURE = 'ADD_SCORE_FAILURE';
+
 export const loginRequestAction = (data) => ({
   type: LOG_IN_REQUEST,
   data,
@@ -38,8 +49,22 @@ export const logoutRequestAction = () => ({
   type: LOG_OUT_REQUEST,
 });
 
+export const addScoreRequestAction = (data) => ({
+  type: ADD_SCORE_REQUEST,
+  data,
+});
+export const resetRequestAction = (data) => ({
+  type: RESET_SUCCESS,
+  data,
+});
+
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
+    case RESET_SUCCESS:
+      draft.addScoreLoading = false;
+      draft.addScoreDone = false;
+      draft.addScoreError = null;
+      break;
     case LOG_IN_REQUEST:
       draft.logInLoading = true;
       draft.logInError = null;
