@@ -2,7 +2,6 @@ import React, { useCallback, useMemo } from 'react';
 import { Button } from 'antd';
 import Router from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import NavBar from './Navbar';
 import { logoutRequestAction } from '../reducers/user';
 
 function LandingPage() {
@@ -22,7 +21,6 @@ function LandingPage() {
 
   return (
       <>
-        <NavBar />
         <div style={style}>
           <h2>시작 페이지</h2>
           {me

@@ -7,7 +7,6 @@ import { loginRequestAction } from '../reducers/user';
 
 // import Router from 'next/router';
 import useInput from '../hooks/useInput';
-import NavBar from './Navbar';
 import LandingPage from './LandingPage';
 
 const ButtonWrapper = styled.div`
@@ -42,16 +41,16 @@ const LoginForm = () => {
   const [password, onChangePassword] = useInput('');
   const [code, setCode] = useState('');
 
-  const style = useMemo(() => ({ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%' }));
+  const style = useMemo(() => ({ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', padding: '10px' }));
 
   useEffect(() => {
-      setCode(new URL(window.location.href).searchParams.get('code'));
+    setCode(new URL(window.location.href).searchParams.get('code'));
   }, [code]); 
 
   useEffect(() => {
-      if (logInError) {
-          alert(logInError);
-      }
+    if (logInError) {
+        alert(logInError);
+    }
   }, [logInError]);
   
   // useEffect(() => {
@@ -62,48 +61,47 @@ const LoginForm = () => {
   // }, [logInDone]);
 
   const onSubmitForm = useCallback(() => {
-      dispatch(loginRequestAction({ email, password }));
+    dispatch(loginRequestAction({ email, password }));
   }, [email, password]);
 
   return (
+    <>
+      {me ? <LandingPage />
+      : (
       <>
-        {me ? <LandingPage />
-        : (
-        <>
-          <NavBar />
-          <div style={style}>
-            <FormWrapper onFinish={onSubmitForm}>
-                <Email>
-                    <label style={{ color: 'white' }} htmlFor="user-email">이메일</label>
-                    <br />
-                    <Input
-                    name="user-email"
-                    type="email"
-                    value={email}
-                    onChange={onChangeEmail}
-                    required
-                    />
-                </Email>
-                <Password>
-                    <label style={{ color: 'white' }} htmlFor="user-password">비밀번호</label>
-                    <br />
-                    <Input
-                    name="user-password"
-                    type="password"
-                    value={password}
-                    onChange={onChangePassword}
-                    required
-                    />
-                </Password>
-                <ButtonWrapper>
-                    <Button type="primary" htmlType="submit" loading={logInLoading}>로그인</Button>
-                    <Link href="/register"><a><Button>회원가입</Button></a></Link>
-                </ButtonWrapper>
-            </FormWrapper>
-          </div>
-        </>
-      )}
+        <div style={style}>
+          <FormWrapper onFinish={onSubmitForm}>
+            <Email>
+              <label style={{ color: 'white' }} htmlFor="user-email">이메일</label>
+              <br />
+              <Input
+              name="user-email"
+              type="email"
+              value={email}
+              onChange={onChangeEmail}
+              required
+              />
+            </Email>
+            <Password>
+              <label style={{ color: 'white' }} htmlFor="user-password">비밀번호</label>
+              <br />
+              <Input
+              name="user-password"
+              type="password"
+              value={password}
+              onChange={onChangePassword}
+              required
+              />
+            </Password>
+            <ButtonWrapper>
+              <Button type="primary" htmlType="submit" loading={logInLoading}>로그인</Button>
+              <Link href="/register"><a><Button>회원가입</Button></a></Link>
+            </ButtonWrapper>
+          </FormWrapper>
+        </div>
       </>
+    )}
+    </>
   );
 };
 
