@@ -6,6 +6,7 @@ import NavBar from '../components/Navbar';
 // import backImage from '../public/astronomy-1867616.jpg';
 
 import wrapper from '../store/configureStore';
+import Footer from '../components/Footer';
 
 const App = ({ Component }) => (
   <>  
@@ -15,7 +16,8 @@ const App = ({ Component }) => (
           <title>WebgameSite</title>
           {/* <body style={{ backgroundImage: `url(${backImage})`, backgroundImage: 'no-repeat', height: '100vh', backgroundSize: 'cover' }}></body> */}
       </Head>
-      <Component />
+      <Component style={{ position: 'relative', paddingBottom: '50px' }} />
+    <Footer />
   </>
 );
 
