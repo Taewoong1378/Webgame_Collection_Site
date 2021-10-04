@@ -5,7 +5,7 @@ import Logo from '../public/gameLogo.png';
 
 const Home = () => (
   <>
-  <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px', marginBottm: '0px' }}>
+  <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px', marginBottom: '0px', padding: '20px' }}>
     <Image width={500} height={180} src={Logo} />
   </div>
   <LoginForm />

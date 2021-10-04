@@ -10,23 +10,25 @@ import useInput from '../hooks/useInput';
 import LandingPage from './LandingPage';
 
 const ButtonWrapper = styled.div`
-  margin-top: 10px;
   margin-bottom: 20px;
+  padding: 20px;
 `;
 
 const FormWrapper = styled(Form)`
   width: 400px;
-  overflow: hidden;
-  box-sizing: border-box;
 `;
 
 const Email = styled.div`
-  width: 400px;
-  margin-bottom: 15px;
+  width: 380px;
+  padding-right: 20px;
+  padding-left: 20px;
 `;
-
+  
 const Password = styled.div`
-  width: 400px;
+  width: 380px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
 `;
 
 const LoginForm = () => {
@@ -41,7 +43,7 @@ const LoginForm = () => {
   const [password, onChangePassword] = useInput('');
   const [code, setCode] = useState('');
 
-  const style = useMemo(() => ({ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', padding: '20px', marginTop: '-50px' }));
+  const style = useMemo(() => ({ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }));
 
   useEffect(() => {
     setCode(new URL(window.location.href).searchParams.get('code'));
